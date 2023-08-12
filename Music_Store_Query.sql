@@ -3,7 +3,7 @@
 SELECT title, last_name, first_name 
 FROM employee
 ORDER BY levels DESC
-LIMIT 1
+LIMIT 1;
 
 
 /* Countries have the most invoices */
@@ -11,14 +11,14 @@ LIMIT 1
 SELECT COUNT(*) AS c, billing_country 
 FROM invoice
 GROUP BY billing_country
-ORDER BY c DESC
+ORDER BY c DESC;
 
 
 /* The top 3 values of total invoice. */
 
 SELECT total 
 FROM invoice
-ORDER BY total DESC
+ORDER BY total DESC;
 
 
 /* We would like to throw a promotional Music Festival in the city we made the most money. Following query returns one city that 
@@ -32,8 +32,7 @@ LIMIT 1;
 
 
 
-/* The customer who has spent the most money will be declared the best customer. 
-Following query returns the person who has spent the most money. */
+/* Following query returns the person who has spent the most money. */
 
 SELECT customer.customer_id, first_name, last_name, SUM(total) AS total_spending
 FROM customer
@@ -84,7 +83,7 @@ ORDER BY miliseconds DESC;
 
 
 
-/* Steps to Solve: First, finding which artist has earned the most according to the InvoiceLines. Now using this artist to find 
+/* Finding which artist has earned the most according to the InvoiceLines. Now using this artist to find 
 which customer spent the most on this artist. For this query we use the Invoice, InvoiceLine, Track, Customer, 
 Album, and Artist tables. The Total spent in the Invoice table might not be on a single product, so using the InvoiceLine table to 
 find out how many of each product was purchased, and then multiply this by the price for each artist. */
