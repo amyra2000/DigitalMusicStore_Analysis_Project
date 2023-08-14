@@ -1,12 +1,12 @@
-/* The senior most employee based on job title */
+/* Top 10 employees based on job level */
 
 SELECT * 
 FROM employee
 ORDER BY levels DESC
-LIMIT 1;
+LIMIT 10;
 
 
-/* Countries have the most invoices */
+/* Countries have the most invoices/purchases */
 
 SELECT COUNT(*) AS c, billing_country 
 FROM invoice
@@ -14,9 +14,9 @@ GROUP BY billing_country
 ORDER BY c DESC;
 
 
-/* The top 3 values of total invoice. */
+/* The values of total invoices. */
 
-SELECT total, COUNT(total)
+SELECT total, COUNT(total), SUM(total)
 FROM invoice
 GROUP BY total
 ORDER BY total DESC;
@@ -33,14 +33,14 @@ LIMIT 1;
 
 
 
-/* Following query returns the person who has spent the most money. */
+/* Following query returns top 10 customers who have spent the most money. */
 
 SELECT customer.customer_id, first_name, last_name, SUM(total) AS total_spending
 FROM customer
 JOIN invoice ON customer.customer_id = invoice.customer_id
 GROUP BY 1,2,3
 ORDER BY total_spending DESC
-LIMIT 1;
+LIMIT 10;
 
 
 
@@ -58,7 +58,7 @@ WHERE genre.name LIKE 'Rock'
 ORDER BY email;
 
 
-/* Writing a query that returns the Artist name and total track count of the top 10 rock bands. */
+/* Writing a query that returns the Artist name and total track count of the rock bands. */
 
 SELECT artist.artist_id, artist.name,COUNT(artist.artist_id) AS number_of_songs
 FROM track
@@ -67,8 +67,7 @@ JOIN artist ON artist.artist_id = album.artist_id
 JOIN genre ON genre.genre_id = track.genre_id
 WHERE genre.name LIKE 'Rock'
 GROUP BY 1,2
-ORDER BY number_of_songs DESC
-LIMIT 10;
+ORDER BY number_of_songs DESC;
 
 
 
